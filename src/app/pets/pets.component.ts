@@ -16,9 +16,7 @@ export class PetsComponent implements OnInit {
   listFilter: string;
   showImage: boolean = false;
 
-  constructor(private _petsService : PetsService) { 
-
-  }
+  constructor(private _petsService : PetsService) { }
 
   ngOnInit() {
     console.log("acá obtengo datos del backend!");
