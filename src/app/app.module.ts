@@ -13,7 +13,8 @@ import { StarsComponent } from './stars/stars.component';
 import { FatherComponent } from './father/father.component';
 import { SonComponent } from './son/son.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { PetDetailComponent } from './pet-detail/pet-detail.component'
+import { PetDetailComponent } from './pet-detail/pet-detail.component';
+import { PetDetailGuardService } from './pets/pet-detail-guard.service';
 
 @NgModule({
   declarations: [
@@ -34,14 +35,14 @@ import { PetDetailComponent } from './pet-detail/pet-detail.component'
     HttpModule, 
     RouterModule.forRoot([
       { path: 'pets', component: PetsComponent }, 
-      { path: 'pets/:id', component: PetDetailComponent }, //detalle de una mascota
+      { path: 'pets/:id', component: PetDetailComponent, canActivate: [PetDetailGuardService] }, //detalle de una mascota
       { path: 'welcome', component: WelcomeComponent }, 
       { path: 'father', component: FatherComponent }, 
       { path: '', redirectTo: 'welcome', pathMatch: 'full' }, //URL por defecto
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' } //cualquier ruta que no matchee va al welcome
     ])
   ],
-  providers: [],
+  providers: [PetDetailGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

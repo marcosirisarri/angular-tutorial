@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Pet } from "../pets/pet";
 
@@ -12,9 +13,14 @@ export class PetDetailComponent implements OnInit {
   pageTitle : string = "Pet detail";
   pet : Pet;
 
-  constructor() { }
+  constructor(private _currentRoute: ActivatedRoute, private _router : Router) { }
 
   ngOnInit() {
+    let id = this._currentRoute.snapshot.params['id'];
+	  this.pageTitle +=  ": " + id;
   }
 
+  onBack(): void {
+    this._router.navigate(['/pets']); //En caso de que necesite parametros los paso como otros argumentos
+  }
 }
